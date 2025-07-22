@@ -72,10 +72,7 @@ if (searchWrapper && searchBtn && searchInput) {
 
     const query = searchInput.value.trim();
     if (query) {
-      window.location.href = "/search?q=" + encodeURIComponent(query);
-    } else {
-      alert("من فضلك اكتب شي كلمة للبحث.");
-    }
+      window.location.href = "/search?q=" + encodeURIComponent(query);}
   });
 
   document.addEventListener("click", function (e) {
