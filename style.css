@@ -211,10 +211,13 @@ header img {
 .text-slider-wrapper {
   width: 100%;
   overflow: hidden;
-  background-color: #f1f1f1;
   padding: 10px 0;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+
+  background: linear-gradient(270deg, #ff7f50, #F5E706, #ff7f50);
+  background-size: 600% 600%;
+  animation: gradientMove 10s ease infinite;
 }
 
 .text-slider {
@@ -222,16 +225,28 @@ header img {
   white-space: nowrap;
   animation: slide-text 15s linear infinite;
   font-size: 18px;
-  color: #333;
+  color: #fff; /* باش يبان النص مزيان فوق التدرج */
   padding-left: 100%;
 }
 
 @keyframes slide-text {
   0% {
-    transform: translateX(100%);
+    transform: translateX(-100%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(100%);
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
@@ -278,12 +293,4 @@ header img {
 .search-wrapper.active #search-input {
   width: 180px;
   opacity: 1;
-}
-
-.footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #0000;
-  font-size: 14px;
-  color: #ffff;
-}
+  }
