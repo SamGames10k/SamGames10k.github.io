@@ -7,8 +7,6 @@ body {
 
 header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   background: #6a0dad;
@@ -30,9 +28,9 @@ header img {
 .menu-icon {
   width: 30px;
   height: 25px;
-  margin-left: auto;
+  margin-right: auto;
   cursor: pointer;
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -49,7 +47,7 @@ header img {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1602;
+  z-index: 2500;
   cursor: pointer;
 }
 
@@ -260,8 +258,9 @@ header img {
 #search-btn {
   background: transparent;
   border: none;
-  font-size: 20px;
+  font-size: 25px;
   cursor: pointer;
+  transform: translateX(-70%)
 }
 
 /* input ديال البحث */
@@ -273,6 +272,7 @@ header img {
   border-radius: 15px;
   transition: width 0.4s ease, opacity 0.4s ease;
   direction: rtl;
+  transform: translateX(-10%)
 }
 
 .search-wrapper.active #search-input {
