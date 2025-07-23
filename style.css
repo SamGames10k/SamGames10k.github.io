@@ -295,4 +295,39 @@ header img {
   opacity: 1;
 }
 
-  
+  /* الطول الافتراضي للصغار جدا (هواتف صغيرة) */
+#search-input {
+  width: 0;
+  opacity: 0;
+  padding: 7px 12px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  transition: width 0.4s ease, opacity 0.4s ease;
+  direction: rtl;
+}
+
+.search-wrapper.active #search-input {
+  width: 120px;
+  opacity: 1;
+}
+
+/* شاشات متوسطة: هواتف أكبر أو تابلت صغير */
+@media (min-width: 480px) {
+  .search-wrapper.active #search-input {
+    width: 145px;
+  }
+}
+
+/* شاشات تابلت أفقي أو لابتوب صغير */
+@media (min-width: 768px) {
+  .search-wrapper.active #search-input {
+    width: 300px;
+  }
+}
+
+/* شاشات كبيرة (ديسكتوب) */
+@media (min-width: 1024px) {
+  .search-wrapper.active #search-input {
+    width: 350px;
+  }
+    }
