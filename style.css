@@ -295,7 +295,149 @@ header img {
   opacity: 1;
 }
 
-  /* الطول الافتراضي للصغار جدا (هواتف صغيرة) */
+.categories-row {
+  display: flex;
+gap: 10px;
+overflow: visible;
+margin-top: 20px;
+}
+
+.category-box {
+flex: 1;
+height: 100px;
+border-radius: 12px;
+background: linear-gradient(135deg, #3a8edb, #6dd5fa);
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+transition: transform 0.3s ease;
+transform-origin: center center;
+}
+/*شرارة*/
+.category-box {
+  position: relative;
+  overflow: visible; /* مهم بزاف باش الشرارات متخرجش من الخانة */
+  z-index: 1;
+}
+
+
+.spark {
+  position: absolute;
+  left: 100%;
+  top: 97%;
+  transform: translateX(-50%) translateY(0);
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: spark-rise 2.5s linear forwards;
+  box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.6);
+  z-index: 0;
+}
+
+@keyframes spark-rise {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-300%);
+  }
+  100% {
+    transform: translateX(-500%) translateY(-2000%);
+    opacity: 0;
+  }
+}
+
+.category-box:hover {
+transform: scale(1.07);
+z-index: 2;
+}
+
+.category-logo {
+max-height: auto;
+max-width: 85%;
+object-fit: contain;
+}
+
+.category-title {
+position: absolute;
+left: -9999px;
+top: auto;
+width: 1px;
+height: 1px;
+overflow: hidden;
+}
+
+/* الخلفيات المتدرجة المتحركة لكل خانة */
+.box1 {
+background: linear-gradient(270deg, #3f51b5, #2196f3);
+background-size: 400% 400%;
+animation: gradientMove 8s ease infinite;
+}
+
+.box2 {
+background: linear-gradient(270deg, #8e24aa, #d81b60);
+background-size: 400% 400%;
+animation: gradientMove 8s ease infinite;
+}
+
+.box3 {
+background: linear-gradient(270deg, #43a047, #66bb6a);
+background-size: 400% 400%;
+animation: gradientMove 8s ease infinite;
+}
+
+.box4 {
+background: linear-gradient(270deg, #f57c00, #ffb300);
+background-size: 400% 400%;
+animation: gradientMove 8s ease infinite;
+}
+
+.box5 {
+background: linear-gradient(270deg, #455a64, #607d8b);
+background-size: 400% 400%;
+animation: gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove {
+0% {background-position: 0% 50%;}
+50% {background-position: 100% 50%;}
+100% {background-position: 0% 50%;}
+}
+
+.category-box span {
+display: block;
+font-size: 18px;
+}
+
+@keyframes autoZoom {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+}
+
+.auto-zoom {
+  animation-name: autoZoom;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+ 
+/*----------------------توافق طول input مع أبعاد الأجهزة------------*/
+
+
+
+  /* الطول الافتراضي للصغار جدا (هواتف صغيرة)  input + icon  */
 #search-input {
   width: 0;
   opacity: 0;
@@ -330,4 +472,4 @@ header img {
   .search-wrapper.active #search-input {
     width: 350px;
   }
-    }
+  }
