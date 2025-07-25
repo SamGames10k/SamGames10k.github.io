@@ -432,6 +432,42 @@ font-size: 18px;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
+
+body {
+  overflow-x: hidden; /* باش تحبس التمدد للجوانب */
+}
+
+.categories-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.categories-row {
+  min-width: 100%;
+  flex-wrap: nowrap; /* باش تبقى كلها فـ سطر واحد */
+}
+
+
+
+/* آخر سطر فـ ملف CSS */
+.categories-container {
+  isolation: isolate;
+  position: relative;
+  z-index: 10;
+}
+
+.category-box {
+  isolation: isolate;
+  will-change: transform;
+  z-index: 15;
+}
+
+.text-slider-wrapper {
+  position: relative;
+  z-index: 5;
+}
  
 /*----------------------توافق طول input مع أبعاد الأجهزة------------*/
 
