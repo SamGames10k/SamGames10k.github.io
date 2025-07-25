@@ -112,7 +112,50 @@
   <script src="script.js"></script>
 
 
+<!-- Google Analytics + Cookie Consent Banner -->
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#333; color:#fff; padding:15px; z-index:9999; font-family:sans-serif;">
+  <div style="max-width:1000px; margin:auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+    <div id="cookie-text" style="flex:1 1 auto; padding:5px 10px;"></div>
+    <button onclick="acceptCookies()" style="background:#4CAF50; color:white; border:none; padding:10px 15px; cursor:pointer; border-radius:4px;">
+      OK
+    </button>
+  </div>
+</div>
 
+<script>
+// نص البنر حسب اللغة
+const messages = {
+  'ar': 'نستخدم ملفات تعريف الارتباط (كوكيز) لتحسين تجربتك. بمواصلة التصفح، فإنك توافق على ذلك.',
+  'en': 'We use cookies to improve your experience. By continuing, you agree to our use of cookies.',
+};
+
+// التحقق من اللغة
+const userLang = navigator.language || navigator.userLanguage;
+const lang = userLang.startsWith('ar') ? 'ar' : 'en';
+
+// عرض البنر إذا ما وافقش
+if (!localStorage.getItem('cookies-accepted')) {
+  document.getElementById('cookie-text').innerText = messages[lang];
+  document.getElementById('cookie-banner').style.display = 'block';
+}
+
+// عند الضغط على OK
+function acceptCookies() {
+  localStorage.setItem('cookies-accepted', 'true');
+  document.getElementById('cookie-banner').style.display = 'none';
+
+  // تحميل Google Analytics بعد الموافقة
+  let script = document.createElement('script');
+  script.src = "https://www.googletagmanager.com/gtag/js?id=G-07SBG11V92";
+  script.async = true;
+  document.head.appendChild(script);
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-07SBG11V92');
+}
+</script>
 
   
 </body>
