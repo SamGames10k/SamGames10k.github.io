@@ -13,78 +13,7 @@
 </head>
 
 <body>
-  <!-- Google Analytics + Cookie Consent Banner متعدد اللغات -->
-<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#333; color:#fff; padding:15px; z-index:9999; font-family:sans-serif;">
-  <div style="max-width:1000px; margin:auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px;">
-    <div id="cookie-text" style="flex:1 1 auto; padding:5px 10px;"></div>
-    <div style="display: flex; gap: 8px;">
-      <button onclick="acceptCookies()" style="background:#4CAF50; color:white; border:none; padding:10px 15px; cursor:pointer; border-radius:4px;" id="accept-btn">✔️</button>
-      <button onclick="rejectCookies()" style="background:#f44336; color:white; border:none; padding:10px 15px; cursor:pointer; border-radius:4px;" id="reject-btn">❌</button>
-    </div>
-  </div>
-</div>
 
-<script>
-const messages = {
-  'en': {
-    msg: 'We use cookies to improve your experience. Do you agree to their use?',
-    accept: '✔️ I Agree',
-    reject: '❌ I Do Not Agree'
-  },
-  'ar': {
-    msg: 'نستخدم ملفات تعريف الارتباط (كوكيز) لتحسين تجربتك. هل توافق على استخدامها؟',
-    accept: '✔️ أوافق',
-    reject: '❌ لا أوافق'
-  },
-  'fr': {
-    msg: 'Nous utilisons des cookies pour améliorer votre expérience. Acceptez-vous leur utilisation ?',
-    accept: '✔️ J\'accepte',
-    reject: '❌ Je refuse'
-  },
-  'es': {
-    msg: 'Usamos cookies para mejorar tu experiencia. ¿Aceptas su uso?',
-    accept: '✔️ Acepto',
-    reject: '❌ No acepto'
-  },
-  'de': {
-    msg: 'Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Stimmen Sie ihrer Verwendung zu?',
-    accept: '✔️ Ich stimme zu',
-    reject: '❌ Ich stimme nicht zu'
-  }
-};
-
-const userLang = (navigator.language || navigator.userLanguage || 'en').slice(0, 2);
-const lang = messages[userLang] ? userLang : 'en';
-
-if (!localStorage.getItem('cookie-consent')) {
-  document.getElementById('cookie-text').innerText = messages[lang].msg;
-  document.getElementById('accept-btn').innerText = messages[lang].accept;
-  document.getElementById('reject-btn').innerText = messages[lang].reject;
-  document.getElementById('cookie-banner').style.display = 'block';
-}
-
-function acceptCookies() {
-  localStorage.setItem('cookie-consent', 'accepted');
-  document.getElementById('cookie-banner').style.display = 'none';
-
-  // Google Analytics بعد الموافقة
-  let script = document.createElement('script');
-  script.src = "https://www.googletagmanager.com/gtag/js?id=G-07SBG11V92";
-  script.async = true;
-  document.head.appendChild(script);
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-07SBG11V92');
-}
-
-function rejectCookies() {
-  localStorage.setItem('cookie-consent', 'rejected');
-  document.getElementById('cookie-banner').style.display = 'none';
-}
-    
-</script>
   <header>
     
     <!--صورة لوغو Sam-whe-play-->
@@ -182,7 +111,78 @@ function rejectCookies() {
   <!-- سكريبت -->
   <script src="script.js"></script>
 
+  <!-- Google Analytics + Cookie Consent Banner متعدد اللغات -->
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#333; color:#fff; padding:15px; z-index:9999; font-family:sans-serif;">
+  <div style="max-width:1000px; margin:auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px;">
+    <div id="cookie-text" style="flex:1 1 auto; padding:5px 10px;"></div>
+    <div style="display: flex; gap: 8px;">
+      <button onclick="acceptCookies()" style="background:#4CAF50; color:white; border:none; padding:10px 15px; cursor:pointer; border-radius:4px;" id="accept-btn">✔️</button>
+      <button onclick="rejectCookies()" style="background:#f44336; color:white; border:none; padding:10px 15px; cursor:pointer; border-radius:4px;" id="reject-btn">❌</button>
+    </div>
+  </div>
+</div>
 
+<script>
+const messages = {
+  'en': {
+    msg: 'We use cookies to improve your experience. Do you agree to their use?',
+    accept: '✔️ I Agree',
+    reject: '❌ I Do Not Agree'
+  },
+  'ar': {
+    msg: 'نستخدم ملفات تعريف الارتباط (كوكيز) لتحسين تجربتك. هل توافق على استخدامها؟',
+    accept: '✔️ أوافق',
+    reject: '❌ لا أوافق'
+  },
+  'fr': {
+    msg: 'Nous utilisons des cookies pour améliorer votre expérience. Acceptez-vous leur utilisation ?',
+    accept: '✔️ J\'accepte',
+    reject: '❌ Je refuse'
+  },
+  'es': {
+    msg: 'Usamos cookies para mejorar tu experiencia. ¿Aceptas su uso?',
+    accept: '✔️ Acepto',
+    reject: '❌ No acepto'
+  },
+  'de': {
+    msg: 'Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Stimmen Sie ihrer Verwendung zu?',
+    accept: '✔️ Ich stimme zu',
+    reject: '❌ Ich stimme nicht zu'
+  }
+};
+
+const userLang = (navigator.language || navigator.userLanguage || 'en').slice(0, 2);
+const lang = messages[userLang] ? userLang : 'en';
+
+if (!localStorage.getItem('cookie-consent')) {
+  document.getElementById('cookie-text').innerText = messages[lang].msg;
+  document.getElementById('accept-btn').innerText = messages[lang].accept;
+  document.getElementById('reject-btn').innerText = messages[lang].reject;
+  document.getElementById('cookie-banner').style.display = 'block';
+}
+
+function acceptCookies() {
+  localStorage.setItem('cookie-consent', 'accepted');
+  document.getElementById('cookie-banner').style.display = 'none';
+
+  // Google Analytics بعد الموافقة
+  let script = document.createElement('script');
+  script.src = "https://www.googletagmanager.com/gtag/js?id=G-07SBG11V92";
+  script.async = true;
+  document.head.appendChild(script);
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-07SBG11V92');
+}
+
+function rejectCookies() {
+  localStorage.setItem('cookie-consent', 'rejected');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+    
+      </script>
 
   
 </body>
