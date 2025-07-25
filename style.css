@@ -460,62 +460,6 @@ body {
 /*----------------------توافق طول input مع أبعاد الأجهزة------------*/
 
 
-.cookie-banner {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(173, 216, 230, 0.95); /* أزرق فاتح */
-  padding: 20px;
-  width: 90%;
-  max-width: 600px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  z-index: 9999;
-  font-family: 'Cairo', sans-serif;
-  background-image: url('https://i.imgur.com/EGS6qvG.png'); /* صورة شفافة وسطية */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100px;
-}
-
-.cookie-content p {
-  font-size: 15px;
-  color: #333;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.cookie-content a {
-  color: #0000EE;
-  text-decoration: underline;
-}
-
-.cookie-actions {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.cookie-actions button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#accept-cookies {
-  background-color: #28a745; /* أخضر */
-  color: white;
-}
-
-#reject-cookies {
-  background-color: transparent;
-  color: #333;
-  border: 2px solid #28a745;
-}
 
 
   /* الطول الافتراضي للصغار جدا (هواتف صغيرة)  input + icon  */
