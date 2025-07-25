@@ -297,29 +297,33 @@ header img {
 
 .categories-row {
   display: flex;
-gap: 10px;
-overflow: visible;
-margin-top: 20px;
+  gap: 10px;
+  overflow: visible;
+  margin-top: 20px;
+  min-width: 100%;
+  flex-wrap: nowrap;
 }
 
-.category-box {
-flex: 1;
-height: 100px;
-border-radius: 12px;
-background: linear-gradient(135deg, #3a8edb, #6dd5fa);
-display: flex;
-justify-content: center;
-align-items: center;
-cursor: pointer;
-transition: transform 0.3s ease;
-transform-origin: center center;
-}
+
 /*شرارة*/
 .category-box {
+  flex: 1;
+  height: 100px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3a8edb, #6dd5fa); /* default */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  transform-origin: center center;
   position: relative;
-  overflow: visible; /* مهم بزاف باش الشرارات متخرجش من الخانة */
-  z-index: 1;
+  overflow: visible;
+  isolation: isolate;
+  will-change: transform;
+  z-index: 15;
 }
+
 
 
 .spark {
@@ -361,7 +365,6 @@ z-index: 2;
 }
 
 .category-logo {
-max-height: auto;
 max-width: 85%;
 object-fit: contain;
 }
@@ -406,10 +409,15 @@ background-size: 400% 400%;
 animation: gradientMove 8s ease infinite;
 }
 
-@keyframes gradientMove {
-0% {background-position: 0% 50%;}
-50% {background-position: 100% 50%;}
-100% {background-position: 0% 50%;}
+.categories-container {
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  
+  isolation: isolate;
+  position: relative;
+  overflow: visible !important;
+  z-index: 10;
 }
 
 .category-box span {
@@ -437,32 +445,12 @@ body {
   overflow-x: hidden; /* باش تحبس التمدد للجوانب */
 }
 
-.categories-container {
-  width: 100%;
-  overflow-x: auto;
-  padding: 0 10px;
-  box-sizing: border-box;
-}
 
-.categories-row {
-  min-width: 100%;
-  flex-wrap: nowrap; /* باش تبقى كلها فـ سطر واحد */
-}
 
 
 
 /* آخر سطر فـ ملف CSS */
-.categories-container {
-  isolation: isolate;
-  position: relative;
-  z-index: 10;
-}
 
-.category-box {
-  isolation: isolate;
-  will-change: transform;
-  z-index: 15;
-}
 
 .text-slider-wrapper {
   position: relative;
