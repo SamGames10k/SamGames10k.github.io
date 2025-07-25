@@ -111,78 +111,147 @@
   <!-- سكريبت -->
   <script src="script.js"></script>
 
-  <!-- Google Analytics + Cookie Consent Banner متعدد اللغات -->
-<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#333; color:#fff; padding:15px; z-index:9999; font-family:sans-serif;">
-  <div style="max-width:1000px; margin:auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px;">
-    <div id="cookie-text" style="flex:1 1 auto; padding:5px 10px;"></div>
-    <div style="display: flex; gap: 8px;">
-      <button onclick="acceptCookies()" style="background:#4CAF50; color:white; border:none; padding:10px 15px; cursor:pointer; border-radius:4px;" id="accept-btn">✔️</button>
-      <button onclick="rejectCookies()" style="background:#f44336; color:white; border:none; padding:10px 15px; cursor:pointer; border-radius:4px;" id="reject-btn">❌</button>
+<!-- HTML -->
+<div id="cookie-banner" class="cookie-banner" style="display:none;">
+  <div class="cookie-content">
+    <p id="cookie-message">
+      نحن نستخدم ملفات تعريف الارتباط لتحسين تجربتك في التصفح، لا نقوم بجمع معلومات شخصية بدون موافقتك...
+    </p>
+    <div class="cookie-actions">
+      <button id="accept-cookies">قبول</button>
+      <button id="reject-cookies">رفض</button>
     </div>
   </div>
 </div>
 
+<!-- CSS -->
+<style>
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(173, 216, 230, 0.95);
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  z-index: 9999;
+  font-family: 'Cairo', sans-serif;
+  background-image: url('https://i.imgur.com/EGS6qvG.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100px;
+}
+
+.cookie-content p {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.cookie-content a {
+  color: #0000EE;
+  text-decoration: underline;
+}
+
+.cookie-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cookie-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#accept-cookies {
+  background-color: #28a745;
+  color: white;
+}
+
+#reject-cookies {
+  background-color: transparent;
+  color: #333;
+  border: 2px solid #28a745;
+}
+</style>
+
+<!-- JS -->
 <script>
-const messages = {
-  'en': {
-    msg: 'We use cookies to improve your experience. Do you agree to their use?',
-    accept: '✔️ I Agree',
-    reject: '❌ I Do Not Agree'
-  },
-  'ar': {
-    msg: 'نستخدم ملفات تعريف الارتباط (كوكيز) لتحسين تجربتك. هل توافق على استخدامها؟',
-    accept: '✔️ أوافق',
-    reject: '❌ لا أوافق'
-  },
-  'fr': {
-    msg: 'Nous utilisons des cookies pour améliorer votre expérience. Acceptez-vous leur utilisation ?',
-    accept: '✔️ J\'accepte',
-    reject: '❌ Je refuse'
-  },
-  'es': {
-    msg: 'Usamos cookies para mejorar tu experiencia. ¿Aceptas su uso?',
-    accept: '✔️ Acepto',
-    reject: '❌ No acepto'
-  },
-  'de': {
-    msg: 'Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Stimmen Sie ihrer Verwendung zu?',
-    accept: '✔️ Ich stimme zu',
-    reject: '❌ Ich stimme nicht zu'
-  }
-};
+  const messages = {
+    'ar': {
+      message: 'نحن نستخدم ملفات تعريف الارتباط لتحسين تجربتك في التصفح، لا نقوم بجمع معلومات شخصية بدون موافقتك. بالضغط على "قبول"، فأنت توافق على استخدام هذه الملفات حسب <a href="https://policies.google.com/technologies/cookies?hl=ar" target="_blank">سياسة الخصوصية</a>.',
+      accept: 'قبول',
+      reject: 'رفض'
+    },
+    'en': {
+      message: 'We use cookies to improve your browsing experience. We do not collect personal data without your consent. By clicking "Accept", you agree to our use of cookies as per the <a href="https://policies.google.com/technologies/cookies?hl=en" target="_blank">Privacy Policy</a>.',
+      accept: 'Accept',
+      reject: 'Reject'
+    },
+    'es': {
+      message: 'Usamos cookies para mejorar tu experiencia de navegación. No recopilamos datos personales sin tu consentimiento. Al hacer clic en "Aceptar", aceptas el uso de cookies según la <a href="https://policies.google.com/technologies/cookies?hl=es" target="_blank">Política de privacidad</a>.',
+      accept: 'Aceptar',
+      reject: 'Rechazar'
+    },
+    'fr': {
+      message: 'Nous utilisons des cookies pour améliorer votre expérience de navigation. Nous ne collectons pas de données personnelles sans votre consentement. En cliquant sur "Accepter", vous acceptez notre utilisation des cookies selon la <a href="https://policies.google.com/technologies/cookies?hl=fr" target="_blank">Politique de confidentialité</a>.',
+      accept: 'Accepter',
+      reject: 'Refuser'
+    }
+  };
 
-const userLang = (navigator.language || navigator.userLanguage || 'en').slice(0, 2);
-const lang = messages[userLang] ? userLang : 'en';
+  window.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-banner');
 
-if (!localStorage.getItem('cookie-consent')) {
-  document.getElementById('cookie-text').innerText = messages[lang].msg;
-  document.getElementById('accept-btn').innerText = messages[lang].accept;
-  document.getElementById('reject-btn').innerText = messages[lang].reject;
-  document.getElementById('cookie-banner').style.display = 'block';
-}
+    // تحقق هل سبق الموافقة أو الرفض
+    if (localStorage.getItem('cookie-consent')) return;
 
-function acceptCookies() {
-  localStorage.setItem('cookie-consent', 'accepted');
-  document.getElementById('cookie-banner').style.display = 'none';
+    // تحديد اللغة
+    const lang = navigator.language.slice(0, 2).toLowerCase();
+    const text = messages[lang] || messages['en'];
+    document.getElementById('cookie-message').innerHTML = text.message;
+    document.getElementById('accept-cookies').innerText = text.accept;
+    document.getElementById('reject-cookies').innerText = text.reject;
 
-  // Google Analytics بعد الموافقة
-  let script = document.createElement('script');
-  script.src = "https://www.googletagmanager.com/gtag/js?id=G-07SBG11V92";
-  script.async = true;
-  document.head.appendChild(script);
+    // تحقق من الموقع الجغرافي
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        const euCountries = ['AT','BE','BG','CY','CZ','DE','DK','EE','ES','FI','FR','GR','HR','HU','IE','IT','LT','LU','LV','MT','NL','PL','PT','RO','SE','SI','SK','IS','LI','NO'];
+        if (euCountries.includes(data.country_code)) {
+          banner.style.display = 'block';
+        }
+      });
 
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-07SBG11V92');
-}
+    document.getElementById('accept-cookies').onclick = () => {
+      localStorage.setItem('cookie-consent', 'accepted');
+      banner.style.display = 'none';
+      // Google Analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'G-07SBG11V92', 'auto');
+      ga('send', 'pageview');
+    };
 
-function rejectCookies() {
-  localStorage.setItem('cookie-consent', 'rejected');
-  document.getElementById('cookie-banner').style.display = 'none';
-}
+    document.getElementById('reject-cookies').onclick = () => {
+      localStorage.setItem('cookie-consent', 'rejected');
+      banner.style.display = 'none';
+    };
+  });
+</script>
     
-      </script>
+      
 
   
 </body>
