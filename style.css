@@ -297,9 +297,9 @@ header img {
 
 .categories-row {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   overflow: visible;
-  margin-top: 20px;
+  margin-top: 1px;
   min-width: 100%;
   flex-wrap: nowrap;
 }
@@ -457,8 +457,33 @@ body {
   z-index: 5;
 }
  
-/*----------------------توافق طول input مع أبعاد الأجهزة------------*/
+/*----------------------توافق  طول input مع أبعاد الأجهزة------------*/
+.description-box {
+  max-width: 95%;           /* ⬅️ أقصى عرض للكتلة */
+  margin: 40px auto 0;         /* ⬅️ وسط الصفحة + تباعد علوي */
+  background-color: #4EB8FF;
+  padding: 20px clamp(20px, 0.5vw, 40px); /* ⬅️ padding عمودي + padding أفقي تلقائي حسب عرض الشاشة */
+  box-sizing: border-box;
+  border-radius: 12px;
+}
 
+.description-content {
+  max-width: auto;
+  text-align: center;
+  color: #fff;
+}
+
+.description-content h2 {
+  font-size: 28px;
+  color: #FFDE59; /* لون مميز */
+  margin-bottom: 15px;
+}
+
+.description-content p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #eeeeee;
+}
 
 
 
