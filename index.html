@@ -223,14 +223,14 @@
     document.getElementById('reject-cookies').innerText = text.reject;
 
     // تحقق من الموقع الجغرافي
-    fetch('https://ipinfo.io/json?token=6a04d387803207')
-  .then(response => response.json())
-  .then(data => 
-        const euCountries = ['AT','BE','BG','CY','CZ','DE','DK','EE','ES','FI','FR','GR','HR','HU','IE','IT','LT','LU','LV','MT','NL','PL','PT','RO','SE','SI','SK','IS','LI','NO'];
-        if (euCountries.includes(data.country_code)) {
-          banner.style.display = 'block';
-        }
-      });
+    fetch('https://ipinfo.io/json?token=6a04d387803207')  
+  .then(res => res.json())  
+  .then(data => {  
+    const euCountries = ['AT','BE','BG','CY','CZ','DE','DK','EE','ES','FI','FR','GR','HR','HU','IE','IT','LT','LU','LV','MT','NL','PL','PT','RO','SE','SI','SK','IS','LI','NO'];  
+    if (euCountries.includes(data.country)) {  
+      banner.style.display = 'block';  
+    }  
+  });
 
     document.getElementById('accept-cookies').onclick = () => {
       localStorage.setItem('cookie-consent', 'accepted');
